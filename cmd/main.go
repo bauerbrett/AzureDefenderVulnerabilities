@@ -320,7 +320,7 @@ This is the func that does not use goroutines, you can test it to see the speed 
 func aiEnrich(recommendation Recommendation) (string, string, string) {
 
 	client := openai.NewClient(
-		option.WithAPIKey("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"))
+		option.WithAPIKey(""))
 	ctx := context.Background()
 
 	vulnerabilityName := recommendation.DisplayName
