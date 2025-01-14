@@ -35,7 +35,7 @@ This program fetches vulnerability data from Azure Defender for Cloud APIs, enri
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/bauerbrett/AzureVulnerabilities
+   git clone https://github.com/bauerbrett/AzureDefenderVulnerabilities
    cd <repository_directory>
 
 ## Run Program 
