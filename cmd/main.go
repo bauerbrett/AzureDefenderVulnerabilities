@@ -451,7 +451,7 @@ func exportToExcel(recommendations []Recommendation, fileName string) error {
 	// Write data rows
 	for rowIndex, rec := range recommendations {
 		row := rowIndex + 2 // Start from row 2 (after headers)
-
+		//Loop through and write the data one row at a time
 		if err := f.SetCellValue(sheetName, fmt.Sprintf("A%d", row), rec.DisplayName); err != nil {
 			return err
 		}
@@ -472,7 +472,7 @@ func exportToExcel(recommendations []Recommendation, fileName string) error {
 		}
 	}
 
-	// Save the file
+	// Save the file. You can change the path in teh fileName up top this func
 	if err := f.SaveAs(fileName); err != nil {
 		return fmt.Errorf("failed to save Excel file: %w", err)
 	}
@@ -500,7 +500,6 @@ func main() {
 		// For management group scope
 		assessmentApi = fmt.Sprintf("https://management.azure.com/%v/providers/Microsoft.Security/assessments?api-version=2021-06-01", scopeString)
 	}
-	//assessmentApi := "https://management.azure.com/subscriptions/3b8667c6-8f75-42ea-b301-bf27c9db8674/providers/Microsoft.Security/assessments?api-version=2021-06-01"
 	//fmt.Println(assessmentApi)
 	metadataApi := "https://management.azure.com/providers/Microsoft.Security/assessmentMetadata?api-version=2021-06-01"
 
@@ -537,12 +536,9 @@ func main() {
 		}
 	*/
 
-	// Print the response struct
-	//fmt.Printf("Response: %+v\n", metadataResponse)
-	//fmt.Printf("Response: %+v\n", assessmentResponse)
+	//Create the recommendation slice
 	recommendations := createRecommendation(assessments, assessmentMetadata)
-	//fmt.Println(assessmentRes[0].Properties.DisplayName)
-	//fmt.Println(metadataRes[7].Properties.DisplayName)
+
 	//updateRecommendations(&recommendations)
 
 	// Create goroutines, channel, and wg
@@ -553,7 +549,7 @@ func main() {
 	ch := make(chan *Recommendation)
 	fmt.Println("Enriching the vulnerability data with AI.....")
 
-	for i, _ := range recommendations {
+	for i := range recommendations {
 		wg.Add(1)
 		go aiEnrich(apiKey, &recommendations[i], &wg, ch)
 	}
@@ -576,14 +572,4 @@ func main() {
 	elapsed := time.Since(start)
 	fmt.Printf("Program complete. Total execution time: %s\n", elapsed)
 
-	//explanation, remediation, context := aiEnrich(recommendations[2])
-	//fmt.Println(explanation)
-	//fmt.Println(recommendations[2].Description)
-	//recommendations[2].Remediation = remediation
-	//recommendations[2].Context = context
-	//recommendations[2].Description = explanation
-
-	//fmt.Println(recommendations[2].Remediation)
-	//fmt.Println(recommendations[2].Context)
-	//fmt.Println(recommendations[2].Description)
 }
