@@ -41,7 +41,7 @@ This program fetches vulnerability data from Azure Defender for Cloud APIs, enri
 ## Run Program 
 - go run main.go 
 - or 
-- go build -o defender-recommendations and ./defender-recommendations
+- go build -o defender-recommendations and in CMD .\defender-recommendations.exe
 
 - Once it is running 
 - Give it your OpenAI API key.
