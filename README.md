@@ -35,5 +35,5 @@ This program fetches vulnerability data from Azure Defender for Cloud APIs, enri
 
 ## Run Program 
 - go run main.go 
-or 
+- or 
 - go build -o defender-recommendations
