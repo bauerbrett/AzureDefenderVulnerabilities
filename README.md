@@ -45,6 +45,6 @@ This program fetches vulnerability data from Azure Defender for Cloud APIs, enri
 
 - Once it is running 
 - Give it your OpenAI API key.
-- Select "Subscription" ***Note: management groups are not working. I could not get them to work with the API even though the API allows it as a option. So as of now you will need to just use a subscription to run it.
-- Enter Subscription ID.
-- Wait a few seconds and it will shoot a excel document out.
+- Select "subscription" ***Note: management groups are not working. I could not get them to work with the API even though the API allows it as a option. So as of now you will need to just use a subscription to run it.
+- Enter subscription ID.
+- Wait a few seconds and it will shoot a excel document out of all the Defender vulnerabilities in your subscription.
