@@ -22,7 +22,7 @@ This program fetches vulnerability data from Azure Defender for Cloud APIs, enri
 
 ### 3. Go and Dependency Management
    - Ensure you have Go installed on your system. If not, download it from [golang.org](https://golang.org/).
-   - I will also put a binary in the release page if you want to just use the binary and not download the repository.
+   - I will also put a binary in the release page if you want to just use the binary and not download the whole repository.
 
 ### 4. Go Modules
 - After cloning the repository install the required Go modules using `go mod tidy` command. The main dependencies include:
