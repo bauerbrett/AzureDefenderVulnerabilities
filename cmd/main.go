@@ -105,6 +105,10 @@ func makeRequest[T any](apiUrl string, token *azcore.AccessToken) ([]T, error) {
 			return nil, fmt.Errorf("error reading response body: %w", err)
 		}
 
+		if res.StatusCode != http.StatusOK {
+			return nil, fmt.Errorf("status code %d: %s", res.StatusCode, string(body))
+		}
+
 		// Handle the response generically
 		var response struct {
 			Value    []T    `json:"value"`
@@ -130,7 +134,7 @@ func fetchAssessments(apiUrl string, token *azcore.AccessToken) ([]DefenderAsses
 	// Fetch all assessments
 	assessments, err := makeRequest[DefenderAssessment](apiUrl, token)
 	if err != nil {
-		return nil, fmt.Errorf("failed to fetch assessments: %w", err)
+		return nil, fmt.Errorf("error: failed to fetch assessments: %w", err)
 	}
 	return assessments, nil
 }
@@ -138,7 +142,7 @@ func fetchMetadata(apiUrl string, token *azcore.AccessToken) ([]AssessmentMetada
 	// Fetch all metadata
 	metadata, err := makeRequest[AssessmentMetadata](apiUrl, token)
 	if err != nil {
-		return nil, fmt.Errorf("failed to fetch metadata: %w", err)
+		return nil, fmt.Errorf("error: to fetch metadata: %w", err)
 	}
 	return metadata, nil
 }
@@ -508,11 +512,13 @@ func main() {
 
 	assessments, err := fetchAssessments(assessmentApi, aadToken)
 	if err != nil {
-		fmt.Println("Error grabbing vulnerabilities:", err)
+		fmt.Println(err)
+		os.Exit(0)
 	}
 	assessmentMetadata, err := fetchMetadata(metadataApi, aadToken)
 	if err != nil {
-		fmt.Println("Error grabbing metadata:", err)
+		fmt.Println(err)
+		os.Exit(0)
 	}
 
 	// Print the raw body for debugging
