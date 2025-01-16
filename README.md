@@ -25,7 +25,7 @@ This program fetches vulnerability data from Azure Defender for Cloud APIs, enri
    - I will also put a binary in the release page if you want to just use the binary and not download the whole repository.
 
 ### 4. Go Modules
-- After cloning the repository install the required Go modules using `go mod tidy` command or if you just run `go build main.go` and it will install dependencies for you. The main dependencies include:
+- After cloning the repository install the required Go modules using `go mod tidy` command or if you just run `go build main.go` it will install dependencies for you. The main dependencies include:
   - `github.com/Azure/azure-sdk-for-go/sdk/azcore`
   - `github.com/Azure/azure-sdk-for-go/sdk/azidentity`
   - `github.com/openai/openai-go`
